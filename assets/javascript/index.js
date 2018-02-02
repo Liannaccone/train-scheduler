@@ -25,7 +25,7 @@
   // creating a variable to referencene the database
   var database = firebase.database();
 
-  // creating variables 
+  // creating variables to hold user inputs
   var inputName = "";
   var inputDestination = "";
   var inputFirstTime = "";
@@ -51,6 +51,7 @@
   database.ref().on("child_added", function(snapshot) {
     // storing the returned object as a variable
     var snap = snapshot.val();
+    console.log(snap)
 
     // append queries to update the HTML with firebase data
       // generates new row in the table
@@ -102,7 +103,20 @@
       minutesAway: minutesAway
     });
 
+    // clears inputs from form to reset for next entry
+    clearForm();
+
   });
+
+
+
+  // function clears input field content (called when user hits submit button, once values are pushed to firebase)
+  function clearForm() {
+    $("#name-input").val("");
+    $("#destination-input").val("")
+    $("#firstTime-input").val("");
+    $("#frequency-input").val("");
+  };
 
 
 
