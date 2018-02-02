@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+	<!-- EXTERNAL LINKS -->
+		<!-- jQuery library-->
+   		 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!-- bootstrap link -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		 <!-- Firebase Reference -->
+		 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+
+		
+	<title>Train Scheduler</title>
+</head>
+<body>
+
+	<div class="container">
+
+		<!-- Jumbotron -->
+		<div class="jumbotron">
+			<h1 class="text-center">Train Scheduler</h1>
+			<h4 class="text-center">Anytime is Train Time</h4>
+		</div>
+
+		<!-- Current Employees panel w table -->
+		<div class="panel panel-default">
+			<!-- heading -->
+			<div class="panel-heading">
+				<h4 class="panel-title">Current Train Schedule</h4>
+			</div>
+			<!-- table -->
+			<div class="panel-body">
+				<table id="train-table" class="table">
+					<tr>
+						<th>Train Name</th>
+						<th>Destination</th>
+						<th>Frequency (min)</th>
+						<th>Next Arrival</th>
+						<th>Minutes Away</th>
+					</tr>
+					<tr>
+						<td>California Caravan</td>
+						<td>Fresno</td>
+						<td>120</td>
+						<td>05:00 PM</td>
+						<td>figure this out later</td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+
+		<!-- form to input employee info -->
+		<div class="panel panel-default">
+			<!-- heading -->
+			<div class="panel-heading">
+				<h4 class="panel-title">Add Train</h4>
+			</div>
+			<!-- form -->
+			<div class="panel-body">
+				<form id="train-form">
+					<div class="form-group">
+						<label for="add-name">Train Name</label>
+						<input class="form-control" type="text" id="name-input">
+					</div>
+					<div class="form-group">
+						<label for="add-destination">Destination</label>
+						<input class="form-control" type="text" id="destination-input">
+					</div>
+					<div class="form-group">
+						<label for="add-firstTime">First Train Time (HH:mm - military time)</label>
+						<input class="form-control" type="text" id="firstTime-input">
+					</div>
+					<div class="form-group">
+						<label for="add-frequency">Frequency (min) </label>
+						<input class="form-control" type="text" id="frequency-input">
+					</div>
+					<!-- submit button -->
+					<input type="submit" id="submit-train" value="Submit">
+				</form>
+			</div>
+		</div>
+
+
+	</div> <!-- closing container -->
+
+<script src="app.js"></script>
+
+</body>
+</html>
