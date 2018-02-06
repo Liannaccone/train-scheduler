@@ -67,16 +67,20 @@
     nextArrival = moment().add(minutesAway, 'm').format('LT');
 
 
-
       // append queries to update the HTML with firebase data
       // generates new row in the table
       var newRow = $("<tr>")
+       // assigning unique firebase key for each table row, called to remove
+      newRow.attr("id", snapshot.key)
+
+
       // appends in the new data points to the row....
       newRow.append("<td>" + snap.name + "</td>");
       newRow.append("<td>" + snap.destination + "</td>");
       newRow.append("<td>" + snap.frequency + "</td>");
       newRow.append("<td>" + nextArrival + "</td>");
       newRow.append("<td>" + minutesAway + "</td>");
+      newRow.append("<td><button class='btn btn-default' id='remove-train'>X</button></td>")
 
       // append new row to the table
       $("#train-table").append(newRow);
@@ -86,6 +90,9 @@
         console.log("There was an error: " + errorObject.code);
  
   });
+
+
+
 
 
 
@@ -118,13 +125,36 @@
 
 
 
-  // function clears input field content (called when user hits submit button, once values are pushed to firebase)
+
+
+
+
+  // listener for remove button clicks to delete row from HTML and data from Firebase
+  $(document).on("click", "#remove-train", function() {
+    // pulls firebase key from the row ID and saves to a temp variable
+    var rowKey = $(this).parent().parent().attr("id");
+    // removes the corresponding key/value pair child from the root
+    database.ref().child(rowKey).remove();
+    // updates HTML
+    $(this).closest("tr").remove();
+
+  })
+
+
+
+
+
+
+
+    // function clears input field content (called when user hits submit button, once values are pushed to firebase)
   function clearForm() {
     $("#name-input").val("");
     $("#destination-input").val("")
     $("#firstTime-input").val("");
     $("#frequency-input").val("");
   };
+
+
 
 
 

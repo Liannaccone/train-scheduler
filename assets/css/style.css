@@ -13,7 +13,7 @@
 	background-color: #34D1BF !important;
 }
 
-#submit-train:hover {
+#submit-train:hover, #remove-train:hover {
 	background-color: #FE4A49;
 	color: white;
 }
