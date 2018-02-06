@@ -108,9 +108,7 @@
       name: inputName,
       destination: inputDestination,
       firstTime: inputFirstTime,
-      frequency: inputFrequency,
-      nextArrival: nextArrival,
-      minutesAway: minutesAway
+      frequency: inputFrequency
     });
 
     // clears inputs from form to reset for next entry
