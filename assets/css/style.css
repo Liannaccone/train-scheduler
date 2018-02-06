@@ -1,0 +1,19 @@
+
+ body {
+	background-image: url(../images/train-tracks.jpg);
+	background-size: 100% 100%;
+}
+
+.jumbotron {
+	background-color: #2AB7CA;
+	color: white;
+}
+
+.panel-heading {
+	background-color: #34D1BF !important;
+}
+
+#submit-train:hover {
+	background-color: #FE4A49;
+	color: white;
+}
