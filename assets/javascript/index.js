@@ -51,17 +51,32 @@
   database.ref().on("child_added", function(snapshot) {
     // storing the returned object as a variable
     var snap = snapshot.val();
-    console.log(snap)
 
-    // append queries to update the HTML with firebase data
+    // to calculate nextArrival/minutesAway fields....
+
+     // assigning variable for train start time from the database and pushing it back 1 year so it is always prior to the current time
+    var firstTime = moment(snap.firstTime, "HH:mm").subtract(1, "years");
+
+    // find the differences between the train's firstTime and timeNow
+    var startDiffNow = moment().diff(moment(firstTime), "minutes");
+    // to hold the time apart
+    var timeApart = startDiffNow % snap.frequency;
+    // minutes until arrival
+    var minutesAway = snap.frequency - timeApart
+    // calculates nextArrival until next train compared to the current time
+    nextArrival = moment().add(minutesAway, 'm').format('LT');
+
+
+
+      // append queries to update the HTML with firebase data
       // generates new row in the table
       var newRow = $("<tr>")
       // appends in the new data points to the row....
       newRow.append("<td>" + snap.name + "</td>");
       newRow.append("<td>" + snap.destination + "</td>");
       newRow.append("<td>" + snap.frequency + "</td>");
-      newRow.append("<td>need to figure this out</td>");
-      newRow.append("<td>need to figure this out</td>");
+      newRow.append("<td>" + nextArrival + "</td>");
+      newRow.append("<td>" + minutesAway + "</td>");
 
       // append new row to the table
       $("#train-table").append(newRow);
@@ -86,11 +101,6 @@
     inputDestination = $("#destination-input").val().trim();
     inputFirstTime = $("#firstTime-input").val().trim();
     inputFrequency = $("#frequency-input").val().trim();
-
-    // *************************************
-    // need to define function elsewhere and run it here to create nextArrival and minutesAway fields
-    nextArrival = "need to figure this out";
-    minutesAway = "need to figure this out";
 
 
     // this pushes our responses to firebase
